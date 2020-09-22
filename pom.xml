@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.kovizone</groupId>
+    <artifactId>kvtool</artifactId>
+    <packaging>pom</packaging>
+    <version>0.0.1</version>
+
+    <modules>
+        <module>kvtool-core</module>
+        <module>kvtool-reflex</module>
+        <module>kvtool-function</module>
+        <module>kvtool-thread</module>
+        <module>kvtool-io</module>
+        <module>kvtool-encode</module>
+        <module>kvtool-verify</module>
+        <module>kvtool-spel</module>
+    </modules>
+
+    <properties>
+        <java.version>1.8</java.version>
+        <guava.version>28.1-jre</guava.version>
+        <spring.version>5.2.9.RELEASE</spring.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.kovizone</groupId>
+                <artifactId>kvtool-core</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.kovizone</groupId>
+                <artifactId>kvtool-reflex</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.kovizone</groupId>
+                <artifactId>kvtool-function</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.kovizone</groupId>
+                <artifactId>kvtool-thread</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.kovizone</groupId>
+                <artifactId>kvtool-io</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.kovizone</groupId>
+                <artifactId>kvtool-encode</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.kovizone</groupId>
+                <artifactId>kvtool-verify</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.kovizone</groupId>
+                <artifactId>kvtool-spel</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>${guava.version}</version>
+            </dependency>
+
+            <!-- https://mvnrepository.com/artifact/org.springframework/spring-context -->
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-expression</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <plugins>
+            <!-- 统一修改项目版本号指令：mvn versions:set -DnewVersion=[版本号] -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>versions-maven-plugin</artifactId>
+                <version>2.7</version>
+                <configuration>
+                    <generateBackupPoms>false</generateBackupPoms>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
