@@ -1,6 +1,6 @@
 package com.kovizone.tool.reflex;
 
-import com.kovizone.tool.function.SerialFunction;
+import com.kovizone.tool.core.function.SerialFunction;
 import com.kovizone.tool.reflex.exception.ReflexException;
 
 import java.lang.reflect.Constructor;

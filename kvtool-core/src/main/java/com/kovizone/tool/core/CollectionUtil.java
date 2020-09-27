@@ -1,11 +1,9 @@
 package com.kovizone.tool.core;
 
-import com.kovizone.tool.function.ForEachFunction;
-import com.kovizone.tool.function.ForEachInxFunction;
+import com.kovizone.tool.core.function.ForEachFunction;
+import com.kovizone.tool.core.function.ForEachInxFunction;
 
 import java.util.*;
-import java.util.function.BiConsumer;
-import java.util.function.Consumer;
 import java.util.function.Function;
 
 /**

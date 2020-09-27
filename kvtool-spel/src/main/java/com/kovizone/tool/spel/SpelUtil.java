@@ -7,6 +7,7 @@ import org.springframework.expression.ExpressionParser;
 import org.springframework.expression.spel.standard.SpelExpressionParser;
 import org.springframework.expression.spel.support.StandardEvaluationContext;
 
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -14,6 +15,12 @@ import java.util.Map;
  * @version 1.0
  */
 public class SpelUtil {
+
+    public static void main(String[] args) {
+        System.out.println(parse("test", new HashMap<String, Object>(1) {{
+            put("test", "123");
+        }}, String.class));
+    }
 
     /**
      * 表达式解析器
@@ -33,17 +40,8 @@ public class SpelUtil {
         try {
             Expression expression = expressionParser.parseExpression(expressionString);
             return expression.getValue(evaluationContext(variableMap), desiredResultType);
-
         } catch (Exception e) {
-            final String splicer = "+";
-            final String splicerMethod = ".concat";
-            if (desiredResultType.equals(String.class)
-                    && !expressionString.contains(splicer)
-                    && !expressionString.contains(splicerMethod)) {
-                Expression expression = expressionParser.parseExpression("'" + expressionString + "'");
-                return expression.getValue(evaluationContext(variableMap), desiredResultType);
-            }
-            throw new ExpressionParseException("解析EL表达式失败：" + expressionString + ";" + e.getMessage());
+            throw new ExpressionParseException(expressionString + ": " + e.getMessage());
         }
     }
 

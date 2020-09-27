@@ -1,4 +1,4 @@
-package com.kovizone.tool.function;
+package com.kovizone.tool.core.function;
 
 import java.io.Serializable;
 import java.util.function.Function;

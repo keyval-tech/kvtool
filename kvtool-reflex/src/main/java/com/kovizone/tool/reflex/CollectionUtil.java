@@ -1,8 +1,8 @@
 package com.kovizone.tool.reflex;
 
-import com.kovizone.tool.function.ForEachBigFunction;
-import com.kovizone.tool.function.ForEachInxBigFunction;
-import com.kovizone.tool.function.SerialFunction;
+import com.kovizone.tool.core.function.ForEachBigFunction;
+import com.kovizone.tool.core.function.ForEachInxBigFunction;
+import com.kovizone.tool.core.function.SerialFunction;
 
 import java.util.*;
 

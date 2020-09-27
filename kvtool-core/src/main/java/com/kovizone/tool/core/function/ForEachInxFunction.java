@@ -1,4 +1,4 @@
-package com.kovizone.tool.function;
+package com.kovizone.tool.core.function;
 
 /**
  * 循环体方法

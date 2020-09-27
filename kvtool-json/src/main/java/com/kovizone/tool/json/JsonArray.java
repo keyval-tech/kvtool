@@ -1,0 +1,121 @@
+package com.kovizone.tool.json;
+
+import com.kovizone.tool.json.constant.JsonParserConstant;
+import com.kovizone.tool.json.exception.KvJsonParseException;
+import com.kovizone.tool.json.parser.JsonFormat;
+import com.kovizone.tool.json.parser.JsonParser;
+import com.kovizone.tool.json.parser.ObjectParser;
+import com.kovizone.tool.json.parser.StringParser;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
+
+/**
+ * JSON数组，继承ArrayList
+ *
+ * @author KoviChen
+ * @version 0.0.1 20191018 KoviChen 新建类
+ */
+public class JsonArray extends ArrayList<Object> {
+
+    public JsonArray() {
+        super(16);
+    }
+
+    public JsonArray(int initialCapacity) {
+        super(initialCapacity);
+    }
+
+    public JsonArray(Collection<?> c) {
+        super(c);
+    }
+
+    public static JsonArray parse(String json) throws KvJsonParseException {
+        return (JsonArray) new StringParser().parse(json);
+    }
+
+    public static JsonArray parse(Object object) throws KvJsonParseException {
+        return (JsonArray) new ObjectParser().parse(object);
+    }
+
+    public <T> Collection<T> toArray(Class<T> clazz) throws KvJsonParseException {
+        return (Collection<T>) new JsonParser().parse(this, clazz);
+    }
+
+    public <T> Collection<T> toArray(Class<T> clazz, boolean intrusive) throws KvJsonParseException {
+        return (Collection<T>) new JsonParser(intrusive).parse(this, clazz);
+    }
+
+    public JsonObject getJsonObject(int index) {
+        return (JsonObject) get(index);
+    }
+
+    public JsonArray getJsonArray(int index) {
+        return (JsonArray) get(index);
+    }
+
+    public String getString(int index) {
+        return String.valueOf(get(index));
+    }
+
+    public Byte getByte(int index) {
+        return Byte.valueOf(String.valueOf(get(index)));
+    }
+
+    public Short getShort(int index) {
+        return Short.parseShort(String.valueOf(get(index)));
+    }
+
+    public Integer getInteger(int index) {
+        return Integer.parseInt(String.valueOf(get(index)));
+    }
+
+    public Long getLong(int index) {
+        return Long.parseLong(String.valueOf(get(index)));
+    }
+
+
+    public Float getFloat(int index) {
+        return Float.parseFloat(String.valueOf(get(index)));
+    }
+
+    public Double getDouble(int index) {
+        return Double.parseDouble(String.valueOf(get(index)));
+    }
+
+    public boolean getBoolean(int index) {
+        Object value = get(index);
+        if (value == null) {
+            return false;
+        }
+
+        if (value instanceof String) {
+            return ((String) value).trim().equalsIgnoreCase(JsonParserConstant.TRUE);
+        }
+        return (Boolean) value;
+    }
+
+    @Override
+    public String toString() {
+        Iterator<Object> it = iterator();
+        if (!it.hasNext()) {
+            return "[]";
+        }
+
+        StringBuilder sb = new StringBuilder();
+        sb.append('[');
+        for (; ; ) {
+            Object e = it.next();
+            sb.append(e instanceof String ? String.format("\"%s\"", e) : e);
+            if (!it.hasNext()) {
+                return sb.append(']').toString();
+            }
+            sb.append(',');
+        }
+    }
+
+    public String toFormatString() {
+        return JsonFormat.format(toString());
+    }
+}

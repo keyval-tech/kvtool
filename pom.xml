@@ -9,48 +9,34 @@
     <packaging>pom</packaging>
     <version>0.0.1</version>
 
-    <modules>
-        <module>kvtool-core</module>
-        <module>kvtool-reflex</module>
-        <module>kvtool-function</module>
-        <module>kvtool-thread</module>
-        <module>kvtool-io</module>
-        <module>kvtool-encode</module>
-        <module>kvtool-verify</module>
-        <module>kvtool-spel</module>
-    </modules>
-
     <properties>
         <java.version>1.8</java.version>
-        <guava.version>28.1-jre</guava.version>
-        <spring.version>5.2.9.RELEASE</spring.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+
+    <modules>
+        <module>kvtool-all</module>
+        <module>kvtool-core</module>
+        <module>kvtool-encode</module>
+        <module>kvtool-io</module>
+        <module>kvtool-json</module>
+        <module>kvtool-reflex</module>
+        <module>kvtool-spel</module>
+        <module>kvtool-sugar</module>
+        <module>kvtool-thread</module>
+        <module>kvtool-verify</module>
+    </modules>
 
     <dependencyManagement>
         <dependencies>
             <dependency>
                 <groupId>com.kovizone</groupId>
+                <artifactId>kvtool-all</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.kovizone</groupId>
                 <artifactId>kvtool-core</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.kovizone</groupId>
-                <artifactId>kvtool-reflex</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.kovizone</groupId>
-                <artifactId>kvtool-function</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.kovizone</groupId>
-                <artifactId>kvtool-thread</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.kovizone</groupId>
-                <artifactId>kvtool-io</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
@@ -60,7 +46,17 @@
             </dependency>
             <dependency>
                 <groupId>com.kovizone</groupId>
-                <artifactId>kvtool-verify</artifactId>
+                <artifactId>kvtool-io</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.kovizone</groupId>
+                <artifactId>kvtool-json</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.kovizone</groupId>
+                <artifactId>kvtool-reflex</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
@@ -68,19 +64,20 @@
                 <artifactId>kvtool-spel</artifactId>
                 <version>${project.version}</version>
             </dependency>
-
-            <!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
             <dependency>
-                <groupId>com.google.guava</groupId>
-                <artifactId>guava</artifactId>
-                <version>${guava.version}</version>
+                <groupId>com.kovizone</groupId>
+                <artifactId>kvtool-sugar</artifactId>
+                <version>${project.version}</version>
             </dependency>
-
-            <!-- https://mvnrepository.com/artifact/org.springframework/spring-context -->
             <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-expression</artifactId>
-                <version>${spring.version}</version>
+                <groupId>com.kovizone</groupId>
+                <artifactId>kvtool-thread</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.kovizone</groupId>
+                <artifactId>kvtool-verify</artifactId>
+                <version>${project.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -99,6 +96,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.1</version>
                 <configuration>
                     <source>${java.version}</source>
                     <target>${java.version}</target>

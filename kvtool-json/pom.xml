@@ -9,14 +9,12 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>kvtool-thread</artifactId>
+    <artifactId>kvtool-json</artifactId>
 
     <dependencies>
-        <!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
         <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-            <version>29.0-jre</version>
+            <groupId>com.kovizone</groupId>
+            <artifactId>kvtool-core</artifactId>
         </dependency>
     </dependencies>
 

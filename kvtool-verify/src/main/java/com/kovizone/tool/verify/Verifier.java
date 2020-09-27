@@ -9,8 +9,6 @@ import com.kovizone.tool.verify.anno.Nullable;
 import com.kovizone.tool.verify.api.anno.Processor;
 import com.kovizone.tool.verify.api.processor.VerifyProcessor;
 import com.kovizone.tool.verify.exception.VerifyException;
-import com.sun.org.slf4j.internal.Logger;
-import com.sun.org.slf4j.internal.LoggerFactory;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
@@ -22,8 +20,6 @@ import java.lang.reflect.Field;
  * @version 0.0.1 20191215 KoviChen 新建类
  */
 public class Verifier {
-
-    public final static Logger logger = LoggerFactory.getLogger(Verifier.class);
 
     public static void verifyObject(Object check) throws VerifyException {
         verifyObject(check, null);

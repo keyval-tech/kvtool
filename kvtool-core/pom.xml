@@ -11,12 +11,5 @@
 
     <artifactId>kvtool-core</artifactId>
 
-    <dependencies>
-        <dependency>
-            <groupId>com.kovizone</groupId>
-            <artifactId>kvtool-function</artifactId>
-        </dependency>
-    </dependencies>
-
 
 </project>

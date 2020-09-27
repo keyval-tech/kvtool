@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>kvtool</artifactId>
+        <groupId>com.kovizone</groupId>
+        <version>0.0.1</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>kvtool-all</artifactId>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.kovizone</groupId>
+            <artifactId>kvtool-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.kovizone</groupId>
+            <artifactId>kvtool-encode</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.kovizone</groupId>
+            <artifactId>kvtool-io</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.kovizone</groupId>
+            <artifactId>kvtool-json</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.kovizone</groupId>
+            <artifactId>kvtool-reflex</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.kovizone</groupId>
+            <artifactId>kvtool-spel</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.kovizone</groupId>
+            <artifactId>kvtool-sugar</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.kovizone</groupId>
+            <artifactId>kvtool-thread</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.kovizone</groupId>
+            <artifactId>kvtool-verify</artifactId>
+        </dependency>
+    </dependencies>
+
+</project>
