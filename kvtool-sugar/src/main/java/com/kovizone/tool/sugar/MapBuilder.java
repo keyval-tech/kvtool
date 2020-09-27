@@ -1,6 +1,7 @@
 package com.kovizone.tool.sugar;
 
 import java.util.*;
+import java.util.function.BooleanSupplier;
 
 /**
  * Map构造器
@@ -20,51 +21,52 @@ public class MapBuilder {
      * @return Map构造辅助器
      */
     public static <K, V> MapBuildHelper<K, V> put(K key, V value) {
-        return new MapBuildHelper<K, V>(key, value);
+        return put(true, key, value);
     }
 
     /**
-     * 生成排序Map构造辅助器，若Key类型实现了排序，则最终可生成treeMap
+     * 生成Map构造辅助器
      *
-     * @param key   Key实例
-     * @param value Value实例
-     * @param <K>   Key泛型
-     * @param <V>   Value泛型
-     * @return 排序Map构造辅助器
+     * @param condition 若为false，key和value将不会被添加
+     * @param key       Key实例
+     * @param value     Value实例
+     * @param <K>       Key泛型
+     * @param <V>       Value泛型
+     * @return Map构造辅助器
      */
-    public static <K extends Comparable<K>, V> ComparableMapBuildHelper<K, V> put(K key, V value) {
-        return new ComparableMapBuildHelper<K, V>(key, value);
+    public static <K, V> MapBuildHelper<K, V> put(BooleanSupplier condition, K key, V value) {
+        if (condition.getAsBoolean()) {
+            return new MapBuildHelper<>(key, value);
+        } else {
+            return new MapBuildHelper<>();
+        }
     }
 
-    public static class ComparableMapBuildHelper<K extends Comparable<K>, V> extends MapBuildHelper<K, V> {
-
-        protected ComparableMapBuildHelper(K key, V value) {
-            super(key, value);
-        }
-
-        /**
-         * 添加元素
-         *
-         * @param key   Key实例
-         * @param value Value实例
-         * @return 排序Map构造辅助器
-         */
-        @Override
-        public ComparableMapBuildHelper<K, V> put(K key, V value) {
-            super.put(key, value);
-            return this;
-        }
-
-        public Map<K, V> treeMap() {
-            Map<K, V> map = new TreeMap<>();
-            getNodeList().forEach(node -> map.put(node.getKey(), node.getValue()));
-            return map;
+    /**
+     * 生成Map构造辅助器
+     *
+     * @param condition 若为false，key和value将不会被添加
+     * @param key       Key实例
+     * @param value     Value实例
+     * @param <K>       Key泛型
+     * @param <V>       Value泛型
+     * @return Map构造辅助器
+     */
+    public static <K, V> MapBuildHelper<K, V> put(boolean condition, K key, V value) {
+        if (condition) {
+            return new MapBuildHelper<>(key, value);
+        } else {
+            return new MapBuildHelper<>();
         }
     }
 
     public static class MapBuildHelper<K, V> {
 
         private List<Node<K, V>> nodeList;
+
+        protected MapBuildHelper() {
+            super();
+        }
 
         protected MapBuildHelper(K key, V value) {
             super();
@@ -80,7 +82,36 @@ public class MapBuilder {
          * @return Map构造辅助器
          */
         public MapBuildHelper<K, V> put(K key, V value) {
-            nodeList.add(new Node<K, V>(key, value));
+            return put(true, key, value);
+        }
+
+        /**
+         * 添加元素
+         *
+         * @param condition 若为false，key和value将不会被添加
+         * @param key       Key实例
+         * @param value     Value实例
+         * @return Map构造辅助器
+         */
+        public MapBuildHelper<K, V> put(boolean condition, K key, V value) {
+            if (condition) {
+                nodeList.add(new Node<K, V>(key, value));
+            }
+            return this;
+        }
+
+        /**
+         * 添加元素
+         *
+         * @param condition 若为false，key和value将不会被添加
+         * @param key       Key实例
+         * @param value     Value实例
+         * @return Map构造辅助器
+         */
+        public MapBuildHelper<K, V> put(BooleanSupplier condition, K key, V value) {
+            if (condition.getAsBoolean()) {
+                nodeList.add(new Node<K, V>(key, value));
+            }
             return this;
         }
 
@@ -106,18 +137,10 @@ public class MapBuilder {
             return map;
         }
 
-        protected List<Node<K, V>> getNodeList() {
-            return nodeList;
-        }
-
-        protected void setNodeList(List<Node<K, V>> nodeList) {
-            this.nodeList = nodeList;
-        }
-    }
-
-    protected static class ComparableNode<K extends Comparable<K>, V> extends Node<K, V> {
-        protected ComparableNode(K key, V value) {
-            super(key, value);
+        public Map<K, V> treeMap() {
+            Map<K, V> map = new TreeMap<>();
+            nodeList.forEach(node -> map.put(node.getKey(), node.getValue()));
+            return map;
         }
     }
 

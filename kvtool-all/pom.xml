@@ -26,10 +26,6 @@
         </dependency>
         <dependency>
             <groupId>com.kovizone</groupId>
-            <artifactId>kvtool-json</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.kovizone</groupId>
             <artifactId>kvtool-reflex</artifactId>
         </dependency>
         <dependency>

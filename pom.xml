@@ -19,7 +19,6 @@
         <module>kvtool-core</module>
         <module>kvtool-encode</module>
         <module>kvtool-io</module>
-        <module>kvtool-json</module>
         <module>kvtool-reflex</module>
         <module>kvtool-spel</module>
         <module>kvtool-sugar</module>
@@ -47,11 +46,6 @@
             <dependency>
                 <groupId>com.kovizone</groupId>
                 <artifactId>kvtool-io</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.kovizone</groupId>
-                <artifactId>kvtool-json</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>

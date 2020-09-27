@@ -2,8 +2,7 @@ package com.kovizone.tool.verify;
 
 import com.kovizone.tool.core.ArrayUtil;
 import com.kovizone.tool.core.ObjectUtil;
-import com.kovizone.tool.reflex.BeanUtil;
-import com.kovizone.tool.reflex.ClassUtil;
+import com.kovizone.tool.reflex.ReflexUtil;
 import com.kovizone.tool.verify.anno.Alias;
 import com.kovizone.tool.verify.anno.Nullable;
 import com.kovizone.tool.verify.api.anno.Processor;
@@ -37,12 +36,12 @@ public class Verifier {
             throw new VerifyException(fieldName, "对象为空");
         }
         Class<?> clazz = check.getClass();
-        Field[] fields = ClassUtil.getDeclaredFields(clazz);
-        Annotation[] classAnnotations = ClassUtil.getDeclaredAnnotations(clazz);
+        Field[] fields = ReflexUtil.getDeclaredFields(clazz);
+        Annotation[] classAnnotations = ReflexUtil.getDeclaredAnnotations(clazz);
 
         if (fields != null) {
             for (Field field : fields) {
-                final Object value = BeanUtil.getValue(check, field);
+                final Object value = ReflexUtil.getFieldValue(check, field);
                 checkNull(fieldNamePrefix, field, value);
 
                 Annotation[] fieldAnnotations = field.getDeclaredAnnotations();
@@ -82,7 +81,7 @@ public class Verifier {
         if (annotationClass.isAnnotationPresent(Processor.class)) {
             Processor processor = annotationClass.getAnnotation(Processor.class);
             Class<?> clazz = processor.value();
-            return (P) BeanUtil.newInstance(clazz);
+            return (P) ReflexUtil.newInstance(clazz);
         }
         return null;
     }

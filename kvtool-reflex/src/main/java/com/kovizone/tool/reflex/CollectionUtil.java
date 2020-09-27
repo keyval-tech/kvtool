@@ -7,7 +7,7 @@ import com.kovizone.tool.core.function.SerialFunction;
 import java.util.*;
 
 /**
- * 反射工具
+ * 集合反射工具
  *
  * @author <a href="mailto:kovichen@163.com">KoviChen</a>
  * @version 1.0
@@ -28,9 +28,9 @@ public class CollectionUtil extends com.kovizone.tool.core.CollectionUtil {
             return null;
         }
         List<R> fieldValueList = new ArrayList<>(collection.size());
-        String fieldName = FieldUtil.getFieldName(func);
+        String fieldName = ReflexUtil.getFieldName(func);
         collection.forEach(action -> {
-            fieldValueList.add((R) BeanUtil.getValue(action, fieldName));
+            fieldValueList.add((R) ReflexUtil.getFieldValue(action, fieldName));
         });
         return fieldValueList;
     }
@@ -49,9 +49,9 @@ public class CollectionUtil extends com.kovizone.tool.core.CollectionUtil {
             return null;
         }
         Map<K, T> map = new HashMap<>(list.size());
-        String fieldName = FieldUtil.getFieldName(keyFunc);
+        String fieldName = ReflexUtil.getFieldName(keyFunc);
         list.forEach(action -> {
-            map.put((K) BeanUtil.getValue(action, fieldName), action);
+            map.put((K) ReflexUtil.getFieldValue(action, fieldName), action);
         });
         return map;
     }
@@ -72,10 +72,10 @@ public class CollectionUtil extends com.kovizone.tool.core.CollectionUtil {
             return null;
         }
         Map<K, V> map = new HashMap<>(list.size());
-        String keyName = FieldUtil.getFieldName(keyFunc);
-        String valueName = FieldUtil.getFieldName(valueFunc);
+        String keyName = ReflexUtil.getFieldName(keyFunc);
+        String valueName = ReflexUtil.getFieldName(valueFunc);
         list.forEach(action -> {
-            map.put((K) BeanUtil.getValue(action, keyName), (V) BeanUtil.getValue(action, valueName));
+            map.put((K) ReflexUtil.getFieldValue(action, keyName), (V) ReflexUtil.getFieldValue(action, valueName));
         });
         return map;
     }
@@ -96,15 +96,15 @@ public class CollectionUtil extends com.kovizone.tool.core.CollectionUtil {
             return null;
         }
         Map<K, List<V>> map = new HashMap<>(list.size());
-        String keyName = FieldUtil.getFieldName(keyFunc);
-        String valueName = FieldUtil.getFieldName(valueFunc);
+        String keyName = ReflexUtil.getFieldName(keyFunc);
+        String valueName = ReflexUtil.getFieldName(valueFunc);
         list.forEach(action -> {
-            K key = (K) BeanUtil.getValue(action, keyName);
+            K key = (K) ReflexUtil.getFieldValue(action, keyName);
             List<V> values = map.get(key);
             if (values == null) {
                 values = new ArrayList<>();
             }
-            values.add((V) BeanUtil.getValue(action, valueName));
+            values.add((V) ReflexUtil.getFieldValue(action, valueName));
             map.put(key, values);
         });
         return map;

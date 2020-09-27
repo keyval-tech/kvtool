@@ -1,14 +1,37 @@
 package com.kovizone.tool.core;
 
-import com.kovizone.tool.core.StringUtil;
+import com.kovizone.tool.core.function.ForEachFunction;
+import com.kovizone.tool.core.function.ForEachInxFunction;
 
 import java.util.Arrays;
 
 /**
+ * 数组工具
+ *
  * @author <a href="mailto:kovichen@163.com">KoviChen</a>
  * @version 1.0
  */
 public class ArrayUtil {
+
+    /**
+     * 判断空
+     *
+     * @param array 数组
+     * @return 是否空
+     */
+    public static boolean isEmpty(Object[] array) {
+        return array == null || array.length <= 0;
+    }
+
+    /**
+     * 判断非空
+     *
+     * @param array 数组
+     * @return 是否非空
+     */
+    public static boolean isNotEmpty(Object[] array) {
+        return !isEmpty(array);
+    }
 
 
     /**
@@ -145,5 +168,41 @@ public class ArrayUtil {
             }
         }
         return false;
+    }
+
+
+    /**
+     * 遍历，输入元素
+     *
+     * @param array  数组
+     * @param action 方法（输入元素）
+     * @param <T>    泛型
+     */
+    public static <T> void forEach(T[] array, ForEachFunction<T> action) {
+        if (array != null && array.length > 0) {
+            for (T t : array) {
+                if (!action.execute(t)) {
+                    break;
+                }
+            }
+        }
+    }
+
+    /**
+     * 遍历，输入元素和索引
+     *
+     * @param array  数组
+     * @param action 方法（输入元素和索引）
+     * @param <T>    泛型
+     */
+    public static <T> void forEachInx(T[] array, ForEachInxFunction<T> action) {
+        if (array != null && array.length > 0) {
+            int i = 0;
+            for (T t : array) {
+                if (!action.execute(t, i++)) {
+                    break;
+                }
+            }
+        }
     }
 }
