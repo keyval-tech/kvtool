@@ -18,6 +18,10 @@
         </dependency>
         <dependency>
             <groupId>com.kovizone</groupId>
+            <artifactId>kvtool-date</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.kovizone</groupId>
             <artifactId>kvtool-encode</artifactId>
         </dependency>
         <dependency>

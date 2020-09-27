@@ -17,6 +17,7 @@
     <modules>
         <module>kvtool-all</module>
         <module>kvtool-core</module>
+        <module>kvtool-date</module>
         <module>kvtool-encode</module>
         <module>kvtool-io</module>
         <module>kvtool-reflex</module>
@@ -36,6 +37,11 @@
             <dependency>
                 <groupId>com.kovizone</groupId>
                 <artifactId>kvtool-core</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.kovizone</groupId>
+                <artifactId>kvtool-date</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
